@@ -12,6 +12,9 @@ size_t i, j;
 int stp;
 char k;
 
+if (size == 0)
+return;
+
 i = 0;
 stp = 0;
 while (i < size - 1)
