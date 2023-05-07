@@ -74,7 +74,7 @@ int i, d, g;
 
 if (list == NULL)
 {
-    return;
+return;
 }
 else if (*list != NULL)
 {
