@@ -49,16 +49,6 @@ ptrb->next = ptra;
 ptrb->prev = store;
 store->next = ptrb;
 }
-if ((ptra->prev == NULL) && (ptrb->prev != NULL))
-{
-store = ptrb->next;
-ptra->next = store;
-ptra->prev = ptrb;
-ptrb->prev = NULL;
-ptrb->next = ptra;
-store->prev = ptra;
-*head = ptrb;
-}
 }
 /**
  * insertion_sort_list - Entry point
@@ -69,16 +59,19 @@ void insertion_sort_list(listint_t **list)
 {
 listint_t *mst = NULL, *temp, *lst, *deb;
 int i, d, g;
+if (*list == NULL)
+return;
 lst = *list;
 for (i = 0; lst; i++)
 lst = lst->next;
-if (i <= 1)
+if (i = 1)
 return;
 if (i == 2)
 {
 deb = (*list)->next;
 deb->prev = NULL;
 (*list)->next = NULL;
+(*list)->prev = deb;
 deb->next = *list;
 *list = deb;
 print_list(*list);
