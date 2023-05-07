@@ -72,7 +72,11 @@ void insertion_sort_list(listint_t **list)
 listint_t *mst = NULL, *temp, *lst, *deb;
 int i, d, g;
 
-if (*list != NULL)
+if (list == NULL)
+{
+    return;
+}
+else if (*list != NULL)
 {
 if ((*list)->next != NULL)
 {
