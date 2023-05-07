@@ -64,7 +64,7 @@ return;
 lst = *list;
 for (i = 0; lst; i++)
 lst = lst->next;
-if (i = 1)
+if (i == 1)
 return;
 if (i == 2)
 {
