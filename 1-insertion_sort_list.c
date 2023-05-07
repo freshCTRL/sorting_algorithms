@@ -1,13 +1,14 @@
-#include "sort.h"
+lude "sort.h"
 #include "string.h"
-void swap_us(listint_t **head, listint_t *ptra, listint_t *ptrb);
 /**
  * swap_us - entry_point.
  * @head: head of the whole list passed
  * @ptra: node to be swap with ptr2
  * @ptrb: node to be swap with ptr1
+ *
  * Description - this function swaps two nodes
 */
+void swap_us(listint_t **head, listint_t *ptra, listint_t *ptrb);
 void swap_us(listint_t **head, listint_t *ptra, listint_t *ptrb)
 {
 listint_t *store, *store1, *p1, *p2;
@@ -49,23 +50,39 @@ ptrb->next = ptra;
 ptrb->prev = store;
 store->next = ptrb;
 }
+if ((ptra->prev == NULL) && (ptrb->prev != NULL))
+{
+store = ptrb->next;
+ptra->next = store;
+ptra->prev = ptrb;
+ptrb->prev = NULL;
+ptrb->next = ptra;
+store->prev = ptra;
+*head = ptrb;
+}
 }
 /**
- * insertion_sort_list - Entry point
- * @list: argument to insertion_sort_list
- * Description: sort a list by insertion method
+* insertion_sort_list - Entry point
+* @list: argument to insertion_sort_list
+*
+* Description: sort a list by insertion method
 */
 void insertion_sort_list(listint_t **list)
 {
 listint_t *mst = NULL, *temp, *lst, *deb;
 int i, d, g;
-if (*list == NULL)
-return;
+
+if (*list != NULL)
+{
+if ((*list)->next != NULL)
+{
+i = 0;
 lst = *list;
-for (i = 0; lst; i++)
+while (lst)
+{
 lst = lst->next;
-if (i == 1)
-return;
+i++;
+}
 if (i == 2)
 {
 deb = (*list)->next;
@@ -75,19 +92,28 @@ deb->prev = NULL;
 deb->next = *list;
 *list = deb;
 print_list(*list);
+return;
 }
-for (g = 1; g < i; g++)
+g = 1;
+while (g < i)
 {
+d = 1;
 mst = *list;
-for (d = 1; d < g; d++)
+while (d < g)
+{
 mst = mst->next;
+d++;
+}
 temp = mst->next;
-for (d = g; ((d >= 1) && (mst->n > temp->n)); d--)
+while ((d >= 1) && (mst->n > temp->n))
 {
 swap_us(list, mst, temp);
-if (temp->prev != NULL)
 mst = temp->prev;
+d--;
 print_list(*list);
+}
+g++;
+}
 }
 }
 }
