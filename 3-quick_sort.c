@@ -36,13 +36,11 @@ array[start] = array[end];
 array[end] = temp;
 print_array(array, size);
 }
-}
-
 temp = array[pivot];
 array[high] = array[start];
 array[start] = temp;
 print_array(array, size);
-
+}
 lomuto(array, low, start - 1, size);
 lomuto(array, start + 1, high, size);
 }
