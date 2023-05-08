@@ -13,12 +13,16 @@ void lomuto(int *array, int low, int high, size_t size);
 void lomuto(int *array, int low, int high, size_t size)
 {
 int start, end, pivot, temp;
+int d, h;
+
+d = 0;
 start = low;
 end = high;
 pivot = high;
 
 if (start >= end)
 return;
+h = 0;
 while (start < end)
 {
 while (array[start] < array[pivot])
@@ -35,12 +39,20 @@ temp = array[start];
 array[start] = array[end];
 array[end] = temp;
 print_array(array, size);
+d = 1;
 }
+h++;
+}
+
 temp = array[pivot];
 array[high] = array[start];
 array[start] = temp;
+
+if ((h == 1) && (low == 0))
 print_array(array, size);
-}
+if (d == 1)
+print_array(array, size);
+
 lomuto(array, low, start - 1, size);
 lomuto(array, start + 1, high, size);
 }
