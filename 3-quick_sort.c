@@ -10,51 +10,31 @@
 */
 void lomuto(int *array, int low, int high, size_t size);
 
-void lomuto(int *array, int low, int high, size_t size)
-{
-int start, end, pivot, temp;
-int d, h;
+void lomuto(int *array, int low, int high, size_t size) {
+  int i, j, pivot, temp;
+  
+  if (low >= high)
+    return;
+  
+  i = low;
+  j = low;
+  pivot = array[high];
+  
 
-d = 0;
-start = low;
-end = high;
-pivot = high;
-
-if (start >= end)
-return;
-h = 0;
-while (start < end)
-{
-while (array[start] < array[pivot])
-{
-start++;
-}
-while (array[end] >= array[pivot])
-{
-end--;
-}
-if (start < end)
-{
-temp = array[start];
-array[start] = array[end];
-array[end] = temp;
-print_array(array, size);
-d = 1;
-}
-h++;
-}
-
-temp = array[pivot];
-array[high] = array[start];
-array[start] = temp;
-
-if ((h == 1) && (low == 0))
-print_array(array, size);
-if (d == 1)
-print_array(array, size);
-
-lomuto(array, low, start - 1, size);
-lomuto(array, start + 1, high, size);
+  for (i=low; i<=high; i++) {
+    if (array[i]<=pivot) {
+      temp=array[i];
+      array[i]=array[j];
+      array[j]=temp;
+      if (array[i] != array[j]) {
+        print_array(array, size);
+      }
+      j++;
+    }
+  }
+  
+  lomuto(array, low, j - 2, size);
+  lomuto(array, j, high, size);
 }
 /**
  * quick_sort - Entry point
@@ -63,8 +43,7 @@ lomuto(array, start + 1, high, size);
  *
  * Description - a sorting algorithm that use lomuto partitioning scheme
 */
-void quick_sort(int *array, size_t size)
-{
+void quick_sort(int *array, size_t size) {
 size_t high;
 
 if (size == 0)
