@@ -19,13 +19,13 @@ return;
 i = low;
 j = low;
 pivot = array[high];
-for (i=low; i<=high; i++)
+for (i=low; i <= high; i++)
 {
-if (array[i]<=pivot)
+if (array[i] <= pivot)
 {
-temp=array[i];
-array[i]=array[j];
-array[j]=temp;
+temp = array[i];
+array[i] = array[j];
+array[j] = temp;
 if (array[i] != array[j])
 print_array(array, size);
 j++;
