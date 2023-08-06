@@ -19,7 +19,7 @@ return;
 i = low;
 j = low;
 pivot = array[high];
-for (i=low; i <= high; i++)
+for (i = low; i <= high; i++)
 {
 if (array[i] <= pivot)
 {
